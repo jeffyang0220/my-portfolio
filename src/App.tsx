@@ -23,7 +23,10 @@ import {
   Sparkles,
   Layers,
   Cpu,
-  Diamond
+  Diamond,
+  Heart,
+  Spade,
+  Club
 } from 'lucide-react';
 import { cn } from './utils';
 
@@ -100,6 +103,7 @@ const PROJECTS: Project[] = [
     type: "3D 撲克手遊",
     description: "全台首創全 3D 撲克手遊，首創倒數錦標賽玩法，具備華麗 3D 場景、Avatar 與變裝系統、徽章成就系統。",
     achievement: "成功上架並獲得高度市場關注，多視角切換體驗。",
+    image: "/Cyberpoker.png",
     tags: ["3D", "德州撲克", "錦標賽"]
   },
   {
@@ -107,6 +111,7 @@ const PROJECTS: Project[] = [
     type: "德州撲克 App",
     description: "信用版德州撲克，包含 NL Holdem、牌局紀錄、貼圖語音包與勝率數據分析。",
     achievement: "半年內完成開發，上線首月營收達 200 萬。",
+    image: "/temple-poker.png",
     tags: ["NL Holdem", "數據分析", "營收成長"]
   },
   {
@@ -114,14 +119,16 @@ const PROJECTS: Project[] = [
     type: "電競類手遊平台",
     description: "電競類麻將手遊，首創天梯排位機制與無二吹牛排位賽，支援現金與信用兩種模式。",
     achievement: "同時在線用戶達 5000 人，三個月營收七百萬。",
+    image: "/black-diamond.png",
     tags: ["麻將", "排位系統", "高併發"]
   },
   {
-    title: "BALLCITY",
-    type: "運動社交 App",
-    description: "籃球場地展示、線上揪團、現場回報與活動邀請推播，虛實整合體驗。",
-    achievement: "獲得 App Store 當月最佳 APP 第三名。",
-    tags: ["社交", "運動", "O2O"]
+    title: "傳說麻將",
+    type: "麻將手遊",
+    description: "具備豐富社交功能與競技排位系統的麻將手遊，強調公平競技與流暢體驗。",
+    achievement: "上線後穩定維持高留存，並成功舉辦多場線上賽事。",
+    image: "/legend-mahjong.png",
+    tags: ["麻將", "競技", "社交"]
   }
 ];
 
@@ -176,9 +183,9 @@ const PokerCard = ({ isFlipped, onClick }: { isFlipped: boolean, onClick?: () =>
       >
         {/* Back */}
         <div className="absolute inset-0 backface-hidden card-back-red rounded-xl shadow-2xl flex items-center justify-center overflow-hidden">
-          <div className="relative z-10 text-white font-bold text-center drop-shadow-lg">
-            <p className="text-[10px] uppercase tracking-widest mb-1 opacity-90">我已經</p>
-            <p className="text-base">選好了</p>
+          <div className="relative z-10 text-white font-bold text-center drop-shadow-lg leading-tight">
+            <p className="text-lg">選好了</p>
+            <p className="text-sm opacity-80">點擊翻開</p>
           </div>
         </div>
         {/* Front */}
@@ -218,10 +225,18 @@ export default function App() {
             <a href="#experience" className="hover:text-sky-400 transition-colors">工作經歷</a>
             <a href="#projects" className="hover:text-sky-400 transition-colors">作品集</a>
             <a href="#skills" className="hover:text-sky-400 transition-colors">專業技能</a>
+            <a href="/portfolio.pdf" target="_blank" rel="noopener noreferrer" className="flex items-center gap-1 text-amber-400 hover:text-amber-300 transition-colors">
+              作品集檔案 <ExternalLink className="w-3 h-3" />
+            </a>
           </div>
-          <button className="bg-sky-500 hover:bg-sky-400 text-slate-950 px-4 py-2 rounded-full text-sm font-bold transition-all transform hover:scale-105">
+          <a 
+            href="https://www.instagram.com/kaizhy11?igsh=Y2JuajIzYXowZnE2&utm_source=qr"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="bg-sky-500 hover:bg-sky-400 text-slate-950 px-4 py-2 rounded-full text-sm font-bold transition-all transform hover:scale-105"
+          >
             聯繫我
-          </button>
+          </a>
         </div>
       </nav>
 
@@ -260,7 +275,7 @@ export default function App() {
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="relative aspect-square max-w-md mx-auto"
+            className="relative aspect-square max-w-[320px] mx-auto"
           >
             <div className="absolute inset-0 bg-sky-500/20 rounded-3xl rotate-6 blur-2xl" />
             <div className="relative h-full w-full glass-effect rounded-3xl overflow-hidden border border-white/10 p-2 flex items-center justify-center">
@@ -275,7 +290,7 @@ export default function App() {
               />
               
               {/* 3D Realistic Cards */}
-              <div className="absolute bottom-12 right-8 flex -space-x-12 perspective-1000">
+              <div className="absolute bottom-2 right-2 flex -space-x-10 perspective-1000 scale-75 origin-bottom-right">
                 <motion.div 
                   whileHover={{ rotateY: -10, y: -20, z: 50 }}
                   className="w-24 h-36 bg-white rounded-xl border-2 border-slate-200 flex flex-col items-center justify-between py-2 text-red-600 font-bold shadow-[10px_10px_25px_rgba(0,0,0,0.5)] transform -rotate-12 transition-all duration-300 cursor-pointer relative overflow-hidden group"
@@ -319,7 +334,7 @@ export default function App() {
 
         {/* Autobiography Section */}
         <section id="bio" className="space-y-12">
-          <SectionTitle title="自傳與核心價值" icon={<User />} />
+          <SectionTitle title="核心價值" icon={<User />} />
           <Card className="p-8 md:p-12">
             <div className="grid md:grid-cols-3 gap-12">
               <div className="md:col-span-2 space-y-6">
@@ -374,34 +389,56 @@ export default function App() {
 
         {/* Experience & Projects Tabs */}
         <section id="experience" className="space-y-12">
-          <div className="flex justify-center gap-6 p-2 bg-slate-900/80 rounded-2xl w-fit mx-auto border border-white/10 shadow-2xl">
-            <button 
-              onClick={() => setActiveTab('exp')}
-              className={cn(
-                "px-10 py-4 rounded-xl text-base font-bold transition-all transform active:scale-95",
-                activeTab === 'exp' ? "bg-sky-500 text-slate-950 shadow-[0_0_20px_rgba(56,189,248,0.4)]" : "text-slate-400 hover:text-white hover:bg-white/5"
-              )}
-            >
-              工作經歷
-            </button>
-            <button 
-              onClick={() => setActiveTab('projects')}
-              className={cn(
-                "px-10 py-4 rounded-xl text-base font-bold transition-all transform active:scale-95",
-                activeTab === 'projects' ? "bg-sky-500 text-slate-950 shadow-[0_0_20px_rgba(56,189,248,0.4)]" : "text-slate-400 hover:text-white hover:bg-white/5"
-              )}
-            >
-              作品集
-            </button>
-            <button 
-              onClick={() => setActiveTab('magic')}
-              className={cn(
-                "px-10 py-4 rounded-xl text-base font-bold transition-all transform active:scale-95",
-                activeTab === 'magic' ? "bg-amber-500 text-slate-950 shadow-[0_0_20px_rgba(251,191,36,0.4)]" : "text-slate-400 hover:text-white hover:bg-white/5"
-              )}
-            >
-              神奇自傳
-            </button>
+          <div className="relative max-w-4xl mx-auto">
+            {/* Poker Frame Decorations */}
+            <div className="absolute -top-4 -left-4 text-white/20 select-none pointer-events-none hidden md:block">
+              <Diamond className="w-8 h-8" />
+            </div>
+            <div className="absolute -top-4 -right-4 text-white/20 select-none pointer-events-none hidden md:block">
+              <Heart className="w-8 h-8" />
+            </div>
+            <div className="absolute -bottom-4 -left-4 text-white/20 select-none pointer-events-none hidden md:block">
+              <Spade className="w-8 h-8" />
+            </div>
+            <div className="absolute -bottom-4 -right-4 text-white/20 select-none pointer-events-none hidden md:block">
+              <Club className="w-8 h-8" />
+            </div>
+
+            <div className="flex flex-col md:flex-row justify-center gap-4 p-3 bg-slate-900/90 rounded-[2rem] border-4 border-slate-800 shadow-[0_20px_50px_rgba(0,0,0,0.5)] relative z-10">
+              <button 
+                onClick={() => setActiveTab('exp')}
+                className={cn(
+                  "px-12 py-6 rounded-2xl text-xl font-black transition-all transform active:scale-95 flex-1",
+                  activeTab === 'exp' 
+                    ? "bg-white text-slate-950 shadow-[0_0_30px_rgba(255,255,255,0.2)] ring-4 ring-sky-500/50" 
+                    : "text-slate-500 hover:text-white hover:bg-white/5 border border-white/5"
+                )}
+              >
+                工作經歷
+              </button>
+              <button 
+                onClick={() => setActiveTab('projects')}
+                className={cn(
+                  "px-12 py-6 rounded-2xl text-xl font-black transition-all transform active:scale-95 flex-1",
+                  activeTab === 'projects' 
+                    ? "bg-white text-slate-950 shadow-[0_0_30px_rgba(255,255,255,0.2)] ring-4 ring-sky-500/50" 
+                    : "text-slate-500 hover:text-white hover:bg-white/5 border border-white/5"
+                )}
+              >
+                作品集
+              </button>
+              <button 
+                onClick={() => setActiveTab('magic')}
+                className={cn(
+                  "px-12 py-6 rounded-2xl text-xl font-black transition-all transform active:scale-95 flex-1",
+                  activeTab === 'magic' 
+                    ? "bg-amber-500 text-slate-950 shadow-[0_0_30px_rgba(245,158,11,0.3)] ring-4 ring-amber-400/50" 
+                    : "text-slate-500 hover:text-white hover:bg-white/5 border border-white/5"
+                )}
+              >
+                神奇自傳
+              </button>
+            </div>
           </div>
 
           <AnimatePresence mode="wait">
@@ -461,7 +498,7 @@ export default function App() {
                   <Card key={i} className="flex flex-col group h-full" delay={i * 0.1}>
                     <div className="aspect-video rounded-xl bg-slate-900 mb-6 overflow-hidden relative border border-white/5">
                       <img 
-                        src={`https://picsum.photos/seed/${project.title}/800/450`} 
+                        src={project.image || `https://picsum.photos/seed/${project.title}/800/450`} 
                         alt={project.title}
                         className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 opacity-60 group-hover:opacity-100"
                         referrerPolicy="no-referrer"
@@ -490,7 +527,7 @@ export default function App() {
                         ))}
                       </div>
                       <button 
-                        onClick={() => window.open('https://ais-dev-nangvu2q4cngez3tiyuxdn-202779007245.asia-northeast1.run.app/portfolio.pdf', '_blank')}
+                        onClick={() => window.open('/作品集.pdf', '_blank')}
                         className="flex items-center gap-2 text-sky-400 hover:text-sky-300 text-xs font-bold transition-colors"
                       >
                         查看詳情 <ExternalLink className="w-3 h-3" />
@@ -548,11 +585,6 @@ export default function App() {
                             <div className="space-y-4 text-slate-400">
                               <p>一副撲克牌除了鬼牌外共有52張，請先在 1～13 的中間 選擇一個數字。</p>
                               <p>接著在 黑桃、紅心、梅花、方塊（紅磚）等花色中選出其中一種～～然後專心地想著這張牌。</p>
-                            </div>
-                            <div className="flex flex-col items-center gap-2 py-4">
-                              {[1, 2, 3, 4, 5, 6].map(i => (
-                                <span key={i} className="text-slate-700">｜</span>
-                              ))}
                             </div>
                           </>
                         ) : null}
@@ -644,16 +676,12 @@ export default function App() {
               </p>
               <div className="flex flex-wrap justify-center gap-4">
                 <a 
-                  href="mailto:jeff760220@gmail.com"
-                  className="bg-slate-950 text-white px-8 py-4 rounded-full font-bold flex items-center gap-2 hover:scale-105 transition-transform shadow-2xl"
+                  href="https://www.instagram.com/kaizhy11?igsh=Y2JuajIzYXowZnE2&utm_source=qr"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="bg-slate-950 text-white px-12 py-5 rounded-full font-bold flex items-center gap-3 hover:scale-105 transition-transform shadow-2xl group"
                 >
-                  <Mail className="w-5 h-5" /> 發送郵件
-                </a>
-                <a 
-                  href="#"
-                  className="bg-white/20 backdrop-blur-md border border-white/30 px-8 py-4 rounded-full font-bold flex items-center gap-2 hover:bg-white/30 transition-all"
-                >
-                  <MessageSquare className="w-5 h-5" /> 聯繫我
+                  <MessageSquare className="w-6 h-6 text-sky-400 group-hover:rotate-12 transition-transform" /> 聯繫我
                 </a>
               </div>
             </div>

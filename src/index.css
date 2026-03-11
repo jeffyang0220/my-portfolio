@@ -53,10 +53,8 @@
 
 .card-back-red {
   background-color: #b91c1c;
-  background-image:  linear-gradient(45deg, #991b1b 25%, transparent 25%, transparent 75%, #991b1b 75%, #991b1b), 
-  linear-gradient(45deg, #991b1b 25%, transparent 25%, transparent 75%, #991b1b 75%, #991b1b);
-  background-size: 16px 16px;
-  background-position: 0 0, 8px 8px;
+  background-image: url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M10 0L20 10L10 20L0 10z' fill='%23991b1b' fill-opacity='0.6'/%3E%3C/svg%3E");
+  background-size: 20px 20px;
   border: 4px solid white;
 }
 
