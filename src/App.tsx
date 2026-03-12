@@ -103,7 +103,7 @@ const PROJECTS: Project[] = [
     type: "3D 撲克手遊",
     description: "全台首創全 3D 撲克手遊，首創倒數錦標賽玩法，具備華麗 3D 場景、Avatar 與變裝系統、徽章成就系統。",
     achievement: "成功上架並獲得高度市場關注，多視角切換體驗。",
-    image: "/Cyberpoker.png",
+    image: "Cyberpoker.png",
     tags: ["3D", "德州撲克", "錦標賽"]
   },
   {
@@ -111,7 +111,7 @@ const PROJECTS: Project[] = [
     type: "德州撲克 App",
     description: "信用版德州撲克，包含 NL Holdem、牌局紀錄、貼圖語音包與勝率數據分析。",
     achievement: "半年內完成開發，上線首月營收達 200 萬。",
-    image: "/temple-poker.png",
+    image: "temple-poker.png",
     tags: ["NL Holdem", "數據分析", "營收成長"]
   },
   {
@@ -119,7 +119,7 @@ const PROJECTS: Project[] = [
     type: "電競類手遊平台",
     description: "電競類麻將手遊，首創天梯排位機制與無二吹牛排位賽，支援現金與信用兩種模式。",
     achievement: "同時在線用戶達 5000 人，三個月營收七百萬。",
-    image: "/black-diamond.png",
+    image: "black-diamond.png",
     tags: ["麻將", "排位系統", "高併發"]
   },
   {
@@ -127,7 +127,7 @@ const PROJECTS: Project[] = [
     type: "麻將手遊",
     description: "具備豐富社交功能與競技排位系統的麻將手遊，強調公平競技與流暢體驗。",
     achievement: "上線後穩定維持高留存，並成功舉辦多場線上賽事。",
-    image: "/legend-mahjong.png",
+    image: "legend-mahjong.png",
     tags: ["麻將", "競技", "社交"]
   }
 ];
@@ -225,7 +225,7 @@ export default function App() {
             <a href="#experience" className="hover:text-sky-400 transition-colors">工作經歷</a>
             <a href="#projects" className="hover:text-sky-400 transition-colors">作品集</a>
             <a href="#skills" className="hover:text-sky-400 transition-colors">專業技能</a>
-            <a href="/portfolio.pdf" target="_blank" rel="noopener noreferrer" className="flex items-center gap-1 text-amber-400 hover:text-amber-300 transition-colors">
+            <a href="portfolio.pdf" target="_blank" rel="noopener noreferrer" className="flex items-center gap-1 text-amber-400 hover:text-amber-300 transition-colors">
               作品集檔案 <ExternalLink className="w-3 h-3" />
             </a>
           </div>
@@ -280,7 +280,7 @@ export default function App() {
             <div className="absolute inset-0 bg-sky-500/20 rounded-3xl rotate-6 blur-2xl" />
             <div className="relative h-full w-full glass-effect rounded-3xl overflow-hidden border border-white/10 p-2 flex items-center justify-center">
               <img 
-                src="/jeff_photo.jpg" 
+                src="jeff_photo.jpg" 
                 alt="Jeff Yang" 
                 className="w-full h-full object-cover rounded-2xl"
                 onError={(e) => {
@@ -527,7 +527,7 @@ export default function App() {
                         ))}
                       </div>
                       <button 
-                        onClick={() => window.open('/作品集.pdf', '_blank')}
+                        onClick={() => window.open('portfolio.pdf', '_blank')}
                         className="flex items-center gap-2 text-sky-400 hover:text-sky-300 text-xs font-bold transition-colors"
                       >
                         查看詳情 <ExternalLink className="w-3 h-3" />
