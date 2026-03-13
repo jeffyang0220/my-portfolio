@@ -94,6 +94,34 @@ const EXPERIENCES: Experience[] = [
       "決策輔助：提供各項專業分析與辦法，協助高階主管進行決策，推動各項專案。"
     ],
     tags: ["數據分析", "用戶反饋", "產品營運"]
+  },
+  {
+    company: "布洛卡斯股份有限公司",
+    role: "軟體專案主管",
+    period: "2015/04 - 2019/04",
+    description: [
+      "負責計劃、指揮及協調與電腦系統、軟體相關之專案，並管理部門日常活動。"
+    ],
+    tags: ["專案協調", "部門管理", "軟體專案"]
+  },
+  {
+    company: "鴻海集團-國碁電子",
+    role: "資深工程師",
+    period: "2014/02 - 2015/03",
+    description: [
+      "負責網路規劃、電信應用服務設計、跨部門溝通整合。",
+      "管理 4 人以下團隊。"
+    ],
+    tags: ["網路規劃", "電信服務", "團隊管理"]
+  },
+  {
+    company: "台灣大哥大",
+    role: "網管工程師",
+    period: "2011/04 - 2014/01",
+    description: [
+      "網路系統維護管理、監控基地台及機房設備、建立監控報告。"
+    ],
+    tags: ["網路維護", "設備監控", "監控報告"]
   }
 ];
 
@@ -202,6 +230,17 @@ const PokerCard = ({ isFlipped, onClick }: { isFlipped: boolean, onClick?: () =>
 export default function App() {
   const [activeTab, setActiveTab] = useState<'exp' | 'projects' | 'magic'>('exp');
   const [magicStep, setMagicStep] = useState(0);
+  const magicCardRef = React.useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (magicStep === 1 && magicCardRef.current) {
+      const yOffset = -100; // 留一點上方空間
+      const element = magicCardRef.current;
+      const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
+      
+      window.scrollTo({ top: y, behavior: 'smooth' });
+    }
+  }, [magicStep]);
 
   return (
     <div className="min-h-screen font-sans selection:bg-sky-500/30">
@@ -544,84 +583,190 @@ export default function App() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -20 }}
-                className="max-w-4xl mx-auto space-y-12 text-left"
+                className="max-w-5xl mx-auto"
               >
-                <Card className="p-8 md:p-12 space-y-8 bg-slate-900/40 border-white/5">
-                  <div className="space-y-6 text-slate-300 leading-relaxed">
-                    <p className="text-xl font-bold text-white">嗨～我是一名產品經理 兼 魔術師 如果你認真的看完這份履歷，你會看到一個神奇的魔術，並且我會在最後揭露整個魔術的秘密！</p>
-                    <p>首先我想用一個簡單的實例來介紹一下我過去的小作品以及設計思路～</p>
-                    <p>在2017年我設計了一款吹牛的線上遊戲，沒錯，就是在酒局中常玩的骰子對戰遊戲，不過當然是跟原版多了點創新的：</p>
-                    
-                    <div className="space-y-6 mt-8">
+                <div className="space-y-16">
+                  {/* Intro Header */}
+                  <div className="text-center space-y-6 max-w-3xl mx-auto">
+                    <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-400 text-xs font-bold tracking-widest uppercase">
+                      <Wand2 className="w-4 h-4" /> Magic Storytelling
+                    </div>
+                    <h3 className="text-3xl md:text-5xl font-bold text-white leading-tight">
+                      嗨～我是一名產品經理 <span className="text-amber-400 italic">兼 魔術師</span>
+                    </h3>
+                    <p className="text-lg text-slate-400 leading-relaxed">
+                      如果你認真的看完這份履歷，你會看到一個神奇的魔術，並且我會在最後揭露整個魔術的秘密！
+                    </p>
+                  </div>
+
+                  {/* Story Content */}
+                  <div className="space-y-12">
+                    {/* Intro Card */}
+                    <div className="max-w-3xl mx-auto p-8 md:p-10 rounded-3xl bg-slate-900/80 border border-white/5 space-y-6 text-center">
+                      <div className="w-16 h-16 rounded-2xl bg-sky-500/20 flex items-center justify-center text-sky-400 mx-auto">
+                        <Gamepad2 className="w-8 h-8" />
+                      </div>
+                      <div className="space-y-4">
+                        <h4 className="text-3xl font-bold text-white">設計思路與實例</h4>
+                        <p className="text-lg text-slate-400 leading-relaxed max-w-2xl mx-auto">
+                          在 2017 年我設計了一款吹牛的線上遊戲，這是一個將傳統酒局遊戲數位化並加入創新的經典案例。
+                        </p>
+                      </div>
+                      <div className="pt-6 border-t border-white/5 flex justify-center gap-8">
+                        <div>
+                          <div className="text-[10px] text-slate-500 uppercase tracking-widest mb-1">核心產品</div>
+                          <div className="text-xl font-bold text-sky-400 italic">無二吹牛</div>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Feature Grid */}
+                    <div className="grid md:grid-cols-2 gap-8">
                       {[
-                        { title: "市場與選品", content: "身為產品經理需要對市場有‘銳利’的眼光，選擇這類遊戲的原因是大多數人都會玩或知道規則，且年齡跨度大又不分性別，受眾會相對廣一些。當然我們還是有針對TA與Persona的分析，以符合行銷時的需求與共鳴。而現在有了AI 工具的出現，會更方便的產出這些分析報告，如ChatGPT,Claude,Kimi（https://kimi.moonshot.cn/ ）等，可以依照需求特性使用不同的語言模型。甚至PM最麻煩的文件產出都直接包辦了大部分。" },
-                        { title: "特色與改良", content: "從自身經歷與經過調研後我發現一個問題，大多數人都經常有希望重新骰一次的時候（超過70%）。原因是出在於牌不夠好！擔心對戰時會偏弱勢，所以我提案改良了一下，“將骰子其中一面的2 都改為 1 ”！因為1在初始狀態可以代表任意數，這樣會將好牌率大大的提升。同時少了2 這個最小的數字，等於只剩下五個數字的組合。讓玩家的對戰精彩度提高，爽度也更高。同時也為這個產品的命名定下了基調，因為沒有2 所以叫做 [無二吹牛] ，在Slogan的設計也簡單好記，獨一無二的無二吹牛。" },
-                        { title: "風格搭配", content: "為了要有更好的臨場感所以UI風格以3D為主，包含了骰盅與場景皆使用3D動畫製作，在過去建模會需要一定的工程時間，現在也有AI工具能快速達成了（如CSM https://3d.csm.ai/)。但細節調整的部分還是要跟設計慢慢雕的，比如骰盅的搖動速度，開牌的節奏等，就需要一些讓玩家能更融入的調整。" },
-                        { title: "音樂性", content: "除了畫面場景搭配之外，BGM的重要性也是不可忽視的，一個好的BGM可以讓用戶不知不覺的沈浸其中而不可自拔。依據我們的調研分析，有部分族群是屬於派對玩家，而在當時電音是年輕人中相當熱門的音樂類型，所以我們還特地請音樂老師製作了多首的電子樂曲，有重節奏的，有輕快型的，採首尾相接的循環設計，玩家可以自行選擇喜愛的類型。而現在當然也有AI 工具能快速達成了（如Suno https://suno.com/）。" },
-                        { title: "對戰機制", content: "玩法上除了提高爽度與畫面外，當然還有對戰性的設計。我們採用了玩家隨機配對的模式，但是每場對戰會打7局，而贏的局數越多則會有更高的爆擊加成，比如7:0完封對手的情況，就會獲得原本單局“鑽石”數量的兩倍加成。所以除了勝場數外，遊戲內鑽石的額外獲得也會更有成就感。" },
-                        { title: "天梯排行榜", content: "遊戲中不可或缺的就是競爭感，一個好的對手能激發出更多的潛力與挑戰。所以我們設計了天梯排行榜，包含勝率、鑽石贏取數等排行，以兩個月為一個賽季，並送出機車、手機、耳機等各種大獎。用戶數變多後也拆分了不同的分區排名，比如北區第三名、中區第七名、南區第二名。這樣的賽季頭銜會成為永久的成就獎章。除了證明實力外，在現實中也是個能向好友炫耀的小玩意。當然在最後衝榜階段我們也會舉辦一些積分加成活動，對於活躍用戶的上線時間也有很大的幫助。" },
-                        { title: "專案時程", content: "在當時的團隊編制中，參與這個專案的成員一共有 7 位（包含前端、後端工程師、動畫師、UI/UX設計師、測試工程師等），而我們從提案到測試上線一共只花了7週的時間，算是相當緊湊與高效的排程。雖然因為遊戲性質與流程並不會太複雜的關係，但也算我歷來產品的最高效率之作了。上線之後的遊戲數據也算是還不錯，除了DAU/MAU有穩定增加外，一日/七日留存率也提高了不少。最後這款小遊戲在前三個月創造了七百萬的營收～" }
+                        { 
+                          title: "市場與選品", 
+                          icon: <LineChart className="w-5 h-5" />,
+                          content: "身為產品經理需要對市場有‘銳利’的眼光，選擇這類遊戲的原因是大多數人都會玩或知道規則，且年齡跨度大又不分性別，受眾會相對廣一些。當然我們還是有針對TA與Persona的分析，以符合行銷時的需求與共鳴。而現在有了AI 工具的出現，會更方便的產出這些分析報告，如ChatGPT,Claude,Kimi（https://kimi.moonshot.cn/ ）等，可以依照需求特性使用不同的語言模型。甚至PM最麻煩的文件產出都直接包辦了大部分。" 
+                        },
+                        { 
+                          title: "特色與改良", 
+                          icon: <Sparkles className="w-5 h-5" />,
+                          content: "從自身經歷與經過調研後我發現一個問題，大多數人都經常有希望重新骰一次的時候（超過70%）。原因是出在於牌不夠好！擔心對戰時會偏弱勢，所以我提案改良了一下，“將骰子其中一面的2 都改為 1 ”！因為1在初始狀態可以代表任意數，這樣會將好牌率大大的提升。同時少了2 這個最小的數字，等於只剩下五個數字的組合。讓玩家的對戰精彩度提高，爽度也更高。同時也為這個產品的命名定下了基調，因為沒有2 所以叫做 [無二吹牛] ，在Slogan的設計也簡單好記，獨一無二的無二吹牛。" 
+                        },
+                        { 
+                          title: "風格搭配", 
+                          icon: <Layers className="w-5 h-5" />,
+                          content: "為了要有更好的臨場感所以UI風格以3D為主，包含了骰盅與場景皆使用3D動畫製作，在過去建模會需要一定的工程時間，現在也有AI工具能快速達成了（如CSM https://3d.csm.ai/)。但細節調整的部分還是要跟設計慢慢雕的，比如骰盅的搖動速度，開牌的節奏等，就需要一些讓玩家能更融入的調整。" 
+                        },
+                        { 
+                          title: "音樂性", 
+                          icon: <MessageSquare className="w-5 h-5" />,
+                          content: "除了畫面場景搭配之外，BGM的重要性也是不可忽視的，一個好的BGM可以讓用戶不知不覺的沈浸其中而不可自拔。依據我們的調研分析，有部分族群是屬於派對玩家，而在當時電音是年輕人中相當熱門的音樂類型，所以我們還特地請音樂老師製作了多首的電子樂曲，有重節奏的，有輕快型的，採首尾相接的循環設計，玩家可以自行選擇喜愛的類型。而現在當然也有AI 工具能快速達成了（如Suno https://suno.com/）。" 
+                        },
+                        { 
+                          title: "對戰機制", 
+                          icon: <Trophy className="w-5 h-5" />,
+                          content: "玩法上除了提高爽度與畫面外，當然還有對戰性的設計。我們採用了玩家隨機配對的模式，但是每場對戰會打7局，而贏的局數越多則會有更高的爆擊加成，比如7:0完封對手的情況，就會獲得原本單局“鑽石”數量的兩倍加成。所以除了勝場數外，遊戲內鑽石的額外獲得也會更有成就感。" 
+                        },
+                        { 
+                          title: "天梯排行榜", 
+                          icon: <LineChart className="w-5 h-5" />,
+                          content: "遊戲中不可或缺的就是競爭感，一個好的對手能激發出更多的潛力與挑戰。所以我們設計了天梯排行榜，包含勝率、鑽石贏取數等排行，以兩個月為一個賽季，並送出機車、手機、耳機等各種大獎。用戶數變多後也拆分了不同的分區排名，比如北區第三名、中區第七名、南區第二名。這樣的賽季頭銜會成為永久的成就獎章。除了證明實力外，在現實中也是個能向好友炫耀的小玩意。當然在最後衝榜階段我們也會舉辦一些積分加成活動，對於活躍用戶的上線時間也有很大的幫助。" 
+                        },
+                        { 
+                          title: "專案時程", 
+                          icon: <Briefcase className="w-5 h-5" />,
+                          content: "在當時的團隊編制中，參與這個專案的成員一共有 7 位（包含前端、後端工程師、動畫師、UI/UX設計師、測試工程師等），而我們從提案到測試上線一共只花了7週的時間，算是相當緊湊與高效的排程。雖然因為遊戲性質與流程並不會太複雜的關係，但也算我歷來產品的最高效率之作了。上線之後的遊戲數據也算是還不錯，除了DAU/MAU有穩定增加外，一日/七日留存率也提高了不少。最後這款小遊戲在前三個月創造了七百萬的營收～" 
+                        }
                       ].map((item, idx) => (
-                        <div key={idx} className="space-y-2 border-l-2 border-sky-500/30 pl-6 py-2">
-                          <h4 className="text-sky-400 font-bold text-lg">{idx + 1}. {item.title}</h4>
-                          <p className="text-slate-400 text-sm leading-relaxed">{item.content}</p>
+                        <div key={idx} className="group p-8 rounded-3xl bg-slate-900/40 border border-white/5 hover:border-sky-500/30 transition-all duration-500">
+                          <div className="flex items-start gap-6">
+                            <div className="w-12 h-12 rounded-xl bg-slate-800 flex items-center justify-center text-sky-400 group-hover:bg-sky-500 group-hover:text-slate-950 transition-all duration-500 shrink-0">
+                              {item.icon}
+                            </div>
+                            <div className="space-y-4">
+                              <h4 className="text-xl font-bold text-white group-hover:text-sky-400 transition-colors">
+                                <span className="text-sky-500/50 mr-2 font-mono">0{idx + 1}</span>
+                                {item.title}
+                              </h4>
+                              <p className="text-slate-400 leading-relaxed text-base">
+                                {item.content}
+                              </p>
+                            </div>
+                          </div>
                         </div>
                       ))}
                     </div>
-
-                    <p className="pt-8">以上是我最小也最高效的遊戲作品之一，如果有興趣可以看看作品集中的其他產品。上面除了代表我的創新思維外，還包含了我對現有技術的不斷更新，以及對創作的熱情，當然我最自信的部分還是在團隊的凝聚與配合上，我會盡量將各方的意見與專業整合，讓團隊成員都在統一的目標上努力，減少溝通上的落差與誤會。這樣不只團隊氣氛好，工作效率高，也能讓所有成員都知道各自的重要性。就算偶爾有加班趕工期成員也都能理解。</p>
                   </div>
 
-                  <div className="pt-12 border-t border-white/5">
+                  {/* Summary Text */}
+                  <div className="max-w-3xl mx-auto p-10 rounded-3xl bg-sky-500/5 border border-sky-500/10 text-slate-300 leading-relaxed text-lg italic text-center">
+                    以上是我最小也最高效的遊戲作品之一，如果有興趣可以看看作品集中的其他產品。上面除了代表我的創新思維外，還包含了我對現有技術的不斷更新，以及對創作的熱情，當然我最自信的部分還是在團隊的凝聚與配合上，我會盡量將各方的意見與專業整合，讓團隊成員都在統一的目標上努力，減少溝通上的落差與誤會。這樣不只團隊氣氛好，工作效率高，也能讓所有成員都知道各自的重要性。就算偶爾有加班趕工期成員也都能理解。
+                  </div>
+
+                  {/* Magic Reveal Section */}
+                  <div className="pt-12">
                     <Card className="p-12 border-amber-500/20 bg-amber-500/5 relative overflow-hidden text-center">
                       <div className="absolute inset-0 diamond-pattern opacity-10" />
                       <div className="relative z-10 space-y-8">
                         {magicStep === 0 ? (
                           <>
-                            <div className="w-20 h-20 bg-amber-500/20 rounded-full flex items-center justify-center mx-auto text-amber-500">
-                              <Wand2 className="w-10 h-10" />
+                            <div className="w-24 h-24 bg-amber-500/20 rounded-full flex items-center justify-center mx-auto text-amber-500 shadow-[0_0_50px_rgba(245,158,11,0.2)]">
+                              <Wand2 className="w-12 h-12" />
                             </div>
-                            <h3 className="text-2xl font-bold">看完履歷現在終於到了魔術的部分</h3>
-                            <div className="space-y-4 text-slate-400">
-                              <p>一副撲克牌除了鬼牌外共有52張，請先在 1～13 的中間 選擇一個數字。</p>
-                              <p>接著在 黑桃、紅心、梅花、方塊（紅磚）等花色中選出其中一種～～然後專心地想著這張牌。</p>
+                            <h3 className="text-3xl font-bold text-white">看完履歷現在終於到了魔術的部分</h3>
+                            <div className="space-y-4 text-slate-400 text-lg max-w-2xl mx-auto">
+                              <p>一副撲克牌除了鬼牌外共有 52 張，請先在 <span className="text-amber-400 font-bold">1～13</span> 的中間 選擇一個數字。</p>
+                              <p>接著在 <span className="text-red-500">黑桃、紅心、梅花、方塊（紅磚）</span> 等花色中選出其中一種～～然後專心地想著這張牌。</p>
                             </div>
                           </>
                         ) : null}
 
-                        <PokerCard isFlipped={magicStep === 1} onClick={() => magicStep === 0 && setMagicStep(1)} />
+                        <div ref={magicCardRef}>
+                          <PokerCard isFlipped={magicStep === 1} onClick={() => magicStep === 0 && setMagicStep(1)} />
+                        </div>
 
                         {magicStep === 1 ? (
                           <motion.div 
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            className="space-y-8"
+                            initial={{ opacity: 0, scale: 0.95 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            className="space-y-10"
                           >
-                            <h3 className="text-2xl font-bold">你選的牌是不是 [方塊 7 ]～～～</h3>
-                            <p className="text-slate-400 leading-relaxed text-left">
-                              如果是的話恭喜你有個良好的魔術體驗，不是的話也沒關係，因為我的主要目的也已經達到了，讓你認真地看到了這裡！！！ 
-                            </p>
-                            <div className="space-y-6 text-left pt-6 border-t border-white/10">
-                              <h4 className="text-xl font-bold text-white">接下來就開始揭秘我用了什麼樣的方式來進行這個魔術</h4>
-                              <p className="text-slate-400 text-sm">其實就是所謂的誘導與文字暗示。</p>
-                              <p className="text-slate-400 text-sm">我在上面用了一些詞彙，比如 銳利、快速、鑽石等，是為了讓你對方塊的形狀產生一定關聯，且在最後選擇時，只有方塊(紅磚)有特別括號說明且排在最後，就是為了加深印象。此外這篇履歷中，我一共用到了: 2017年 、70%、7 局、第七名、7:0、7 位成員、7 周、七百萬以及總共 7 大項的排版來提供暗示，且在最後的選擇數字時，我用了 “ 1～13 的中間” 的說法來誘導讓你選擇中間數字 7。</p>
-                              <p className="text-slate-400 text-sm">這還只是單純的從文字上融合魔術中的一小部分基本概念而已。現在想像一下如果我們之後的產品能在其中設計相關的圖案、聲音等暗示效果的話。是不是能增加用戶的黏著度與轉化率呢～～</p>
+                            <h3 className="text-4xl md:text-6xl font-black text-white tracking-tighter">
+                              你選的牌是不是 <br />
+                              <span className="text-red-500 bg-white px-6 py-2 rounded-xl inline-block mt-4 shadow-[0_0_50px_rgba(239,68,68,0.3)]">
+                                [ 方塊 7 ]
+                              </span>
+                            </h3>
+                            
+                            <div className="max-w-3xl mx-auto space-y-8 text-left">
+                              <p className="text-slate-400 leading-relaxed text-lg">
+                                如果是的話恭喜你有個良好的魔術體驗，不是的話也沒關係，因為我的主要目的也已經達到了，讓你認真地看到了這裡！！！ 
+                              </p>
+                              
+                              <div className="space-y-8 pt-10 border-t border-white/10">
+                                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-lg bg-sky-500/10 text-sky-400 text-xs font-bold uppercase tracking-widest">
+                                  Magic Reveal
+                                </div>
+                                <h4 className="text-2xl font-bold text-white italic">接下來就開始揭秘我用了什麼樣的方式來進行這個魔術</h4>
+                                
+                                <div className="grid gap-6">
+                                  <div className="p-6 rounded-2xl bg-slate-900/60 border border-white/5 space-y-3">
+                                    <p className="text-slate-300">其實就是所謂的 <span className="text-sky-400 font-bold">誘導與文字暗示</span>。</p>
+                                    <p className="text-slate-400 text-sm leading-relaxed">
+                                      我在上面用了一些詞彙，比如 <span className="text-white underline decoration-sky-500/50">銳利</span>、<span className="text-white underline decoration-sky-500/50">快速</span>、<span className="text-white underline decoration-sky-500/50">鑽石</span>等，是為了讓你對方塊的形狀產生一定關聯，且在最後選擇時，只有方塊(紅磚)有特別括號說明且排在最後，就是為了加深印象。
+                                    </p>
+                                  </div>
+                                  
+                                  <div className="p-6 rounded-2xl bg-slate-900/60 border border-white/5 space-y-3">
+                                    <p className="text-slate-400 text-sm leading-relaxed">
+                                      此外這篇履歷中，我一共用到了: <span className="text-sky-400 font-bold">2017年</span> 、<span className="text-sky-400 font-bold">70%</span>、<span className="text-sky-400 font-bold">7 局</span>、<span className="text-sky-400 font-bold">第七名</span>、<span className="text-sky-400 font-bold">7:0</span>、<span className="text-sky-400 font-bold">7 位成員</span>、<span className="text-sky-400 font-bold">7 周</span>、<span className="text-sky-400 font-bold">七百萬</span>以及總共 <span className="text-sky-400 font-bold">7 大項</span>的排版來提供暗示，且在最後的選擇數字時，我用了 “ <span className="text-white font-bold">1～13 的中間</span>” 的說法來誘導讓你選擇中間數字 7。
+                                    </p>
+                                  </div>
+                                </div>
+
+                                <p className="text-slate-400 text-sm leading-relaxed">
+                                  這還只是單純的從文字上融合魔術中的一小部分基本概念而已。現在想像一下如果我們之後的產品能在其中設計相關的圖案、聲音等暗示效果的話。是不是能增加用戶的黏著度與轉化率呢～～
+                                </p>
+                                
+                                <div className="p-8 rounded-2xl bg-gradient-to-br from-sky-500/20 to-transparent border border-sky-500/30 text-slate-200 italic text-lg shadow-2xl">
+                                  最後如果你需要一份更正式的“產品經理”能做到什麼的履歷的話，我馬上能叫 AI 出一份符合你的崗位職缺描述的專屬履歷。但我更傾向講點真實的，因為真誠才是必殺技啊！
+                                </div>
+                              </div>
                             </div>
-                            <div className="p-6 rounded-xl bg-slate-950/50 border border-white/5 text-sm text-slate-300 italic text-left">
-                              最後如果你需要一份更正式的“產品經理”能做到什麼的履歷的話，我馬上能叫 AI 出一份符合你的崗位職缺描述的專屬履歷。但我更傾向講點真實的，因為真誠才是必殺技啊！
-                            </div>
+
                             <button 
                               onClick={() => setMagicStep(0)}
-                              className="text-amber-500 font-bold text-sm hover:underline"
+                              className="px-8 py-3 rounded-full border border-amber-500/30 text-amber-500 font-bold text-sm hover:bg-amber-500/10 transition-all"
                             >
-                              重新體驗
+                              重新體驗魔術
                             </button>
                           </motion.div>
                         ) : null}
                       </div>
                     </Card>
                   </div>
-                </Card>
+                </div>
               </motion.div>
             )}
           </AnimatePresence>
@@ -659,29 +804,45 @@ export default function App() {
 
         {/* Call to Action */}
         <section className="pt-24 pb-12">
-          <Card className="bg-sky-500 text-slate-950 p-12 text-center relative overflow-hidden">
-            <div className="absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none">
+          <Card className="bg-slate-900 border-sky-500/30 p-12 text-center relative overflow-hidden group">
+            {/* Animated Background Glow */}
+            <div className="absolute -top-24 -left-24 w-64 h-64 bg-sky-500/20 blur-[100px] rounded-full group-hover:bg-sky-500/30 transition-colors duration-700" />
+            <div className="absolute -bottom-24 -right-24 w-64 h-64 bg-cyan-500/10 blur-[100px] rounded-full group-hover:bg-cyan-500/20 transition-colors duration-700" />
+            
+            <div className="absolute top-0 left-0 w-full h-full opacity-5 pointer-events-none">
                <div className="grid grid-cols-12 gap-4 h-full">
                   {Array.from({ length: 48 }).map((_, i) => (
-                    <div key={i} className="aspect-square border border-slate-950/20 rounded-sm" />
+                    <div key={i} className="aspect-square border border-sky-500/20 rounded-sm" />
                   ))}
                </div>
             </div>
-            <div className="relative z-10 space-y-8">
-              <h2 className="text-4xl md:text-6xl font-bold font-display leading-tight">
-                準備好提升您的 <br /> <span className="italic underline decoration-slate-950/30">產品勝率嗎？</span>
+
+            <div className="relative z-10 space-y-10">
+              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-sky-500/10 border border-sky-500/20 text-sky-400 text-xs font-bold tracking-[0.2em] uppercase">
+                Next Chapter
+              </div>
+              
+              <h2 className="text-4xl md:text-7xl font-bold font-display leading-[1.1] tracking-tight">
+                <span className="text-white">準備好提升您的</span> <br /> 
+                <span className="bg-gradient-to-r from-cyan-400 via-sky-400 to-blue-500 bg-clip-text text-transparent italic">
+                  產品勝率嗎？
+                </span>
               </h2>
-              <p className="text-lg font-medium text-slate-900/70 max-w-xl mx-auto">
-                我正在尋找下一個挑戰。如果您需要一位具備遊戲思維、魔術直覺與數據驅動能力的資深產品經理，讓我們聊聊。
+
+              <p className="text-lg md:text-xl font-medium text-slate-400 max-w-2xl mx-auto leading-relaxed">
+                我正在尋找下一個挑戰。如果您需要一位具備<span className="text-sky-300">遊戲思維</span>、<span className="text-sky-300">魔術直覺</span>與<span className="text-sky-300">數據驅動能力</span>的資深產品經理，讓我們聊聊。
               </p>
-              <div className="flex flex-wrap justify-center gap-4">
+
+              <div className="flex flex-wrap justify-center gap-6 pt-4">
                 <a 
                   href="https://www.instagram.com/kaizhy11?igsh=Y2JuajIzYXowZnE2&utm_source=qr"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="bg-slate-950 text-white px-12 py-5 rounded-full font-bold flex items-center gap-3 hover:scale-105 transition-transform shadow-2xl group"
+                  className="relative overflow-hidden bg-sky-500 text-slate-950 px-16 py-5 rounded-full font-black text-lg flex items-center gap-3 hover:scale-105 transition-all shadow-[0_0_40px_rgba(14,165,233,0.3)] group/btn"
                 >
-                  <MessageSquare className="w-6 h-6 text-sky-400 group-hover:rotate-12 transition-transform" /> 聯繫我
+                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover/btn:translate-x-full transition-transform duration-1000" />
+                  <MessageSquare className="w-6 h-6 group-hover:rotate-12 transition-transform" /> 
+                  立即聯繫
                 </a>
               </div>
             </div>
