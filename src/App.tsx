@@ -434,15 +434,6 @@ export default function App() {
           </div>
 
           <div className="flex items-center gap-4">
-            <a 
-              href="https://www.instagram.com/kaizhy11?igsh=Y2JuajIzYXowZnE2&utm_source=qr"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hidden md:block bg-sky-500 hover:bg-sky-400 text-slate-950 px-4 py-2 rounded-full text-sm font-bold transition-all transform hover:scale-105"
-            >
-              聯繫我
-            </a>
-            
             {/* Mobile Menu Toggle */}
             <button 
               className="md:hidden text-slate-400 hover:text-white transition-colors"
@@ -507,14 +498,6 @@ export default function App() {
                 >
                   專業技能
                 </a>
-                <a 
-                  href="https://www.instagram.com/kaizhy11?igsh=Y2JuajIzYXowZnE2&utm_source=qr"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="bg-sky-500 text-slate-950 px-4 py-2 rounded-full text-sm font-bold text-center"
-                >
-                  聯繫我
-                </a>
               </div>
             </motion.div>
           )}
@@ -540,12 +523,6 @@ export default function App() {
               我是 Jeff Yang &lt;凱智&gt;，一位擁有 12 年經驗的產品經理。我擅長將「魔術心理學」與「遊戲機制」融入產品設計，創造具備高黏著度與商業價值的數位體驗。
             </p>
             <div className="flex flex-wrap gap-4">
-              <div className="flex items-center gap-2 text-slate-300 text-sm">
-                <Mail className="w-4 h-4 text-sky-500" /> jeff760220@gmail.com
-              </div>
-              <div className="flex items-center gap-2 text-slate-300 text-sm">
-                <Phone className="w-4 h-4 text-sky-500" /> 0958-387-877
-              </div>
               <div className="flex items-center gap-2 text-slate-300 text-sm">
                 <MapPin className="w-4 h-4 text-sky-500" /> 台灣，新北市
               </div>
@@ -1079,30 +1056,7 @@ export default function App() {
                 </p>
               </div>
 
-              <div className="flex flex-col md:flex-row items-center justify-center gap-6">
-                <a 
-                  href="https://www.instagram.com/kaizhy11?igsh=Y2JuajIzYXowZnE2&utm_source=qr"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="px-12 py-6 rounded-full bg-sky-500 text-slate-950 font-black text-xl hover:bg-sky-400 transition-all shadow-[0_0_50px_rgba(14,165,233,0.3)] transform hover:scale-105"
-                >
-                  立即聯繫
-                </a>
-                <a 
-                  href="mailto:jeff760220@gmail.com"
-                  className="px-12 py-6 rounded-full bg-white/5 border border-white/10 text-white font-black text-xl hover:bg-white/10 transition-all transform hover:scale-105"
-                >
-                  發送郵件
-                </a>
-              </div>
-
               <div className="pt-12 border-t border-white/5 flex flex-wrap justify-center gap-12 text-slate-500 text-sm font-mono tracking-widest uppercase">
-                <div className="flex items-center gap-2">
-                  <Mail className="w-4 h-4" /> jeff760220@gmail.com
-                </div>
-                <div className="flex items-center gap-2">
-                  <Phone className="w-4 h-4" /> 0958-387-877
-                </div>
               </div>
             </div>
           </Card>

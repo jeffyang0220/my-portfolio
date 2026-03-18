@@ -402,45 +402,6 @@ export default function PortfolioPage({ projects, onBack }: PortfolioPageProps) 
             </section>
           </div>
         ))}
-
-        {/* Contact Slide */}
-        <div style={{ height: `${1080 * scale}px`, width: `${1920 * scale}px` }} className="relative overflow-hidden">
-          <section 
-            className="portfolio-slide w-[1920px] h-[1080px] absolute top-0 left-0 flex flex-col items-center justify-center bg-[#0a192f] overflow-hidden"
-            style={{ transform: `scale(${scale})`, transformOrigin: 'top left' }}
-          >
-            <div className="absolute inset-0 opacity-20">
-              <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(34,211,238,0.1)_0%,transparent_70%)]" />
-              <div className="grid grid-cols-12 h-full w-full opacity-10">
-                {[...Array(144)].map((_, i) => (
-                  <div key={i} className="border-[0.5px] border-cyan-500/20" />
-                ))}
-              </div>
-            </div>
-
-            <motion.div 
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              className="relative z-10 text-center"
-            >
-              <h2 className="text-8xl font-black mb-8 bg-gradient-to-r from-white to-cyan-400 bg-clip-text text-transparent">
-                期待與您合作
-              </h2>
-              <p className="text-3xl text-slate-400 mb-16 max-w-3xl mx-auto leading-relaxed">
-                如果您對我的作品感興趣，或有任何專案想進一步討論，歡迎隨時與我聯繫。
-              </p>
-              
-              <div className="flex gap-12 justify-center">
-                <div className="flex flex-col items-center gap-4">
-                  <div className="w-20 h-20 rounded-2xl bg-cyan-500/10 flex items-center justify-center border border-cyan-500/30">
-                    <Mail className="w-10 h-10 text-cyan-400" />
-                  </div>
-                  <span className="text-xl text-slate-300">jeff760220@gmail.com</span>
-                </div>
-              </div>
-            </motion.div>
-          </section>
-        </div>
       </div>
 
       {/* Preview Overlay */}
